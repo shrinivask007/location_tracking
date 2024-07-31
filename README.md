@@ -2,6 +2,9 @@
 
 A real-time device tracking application built with Node.js, Express, Socket.IO, and Leaflet. This application allows users to track their devices' locations on a map in real-time using geolocation.
 
+## Home page
+![Home Page](screenshot/home.png)
+
 ## Features
 
 - Real-time location tracking using WebSocket.
@@ -25,12 +28,26 @@ A real-time device tracking application built with Node.js, Express, Socket.IO, 
 - Node.js installed on your machine.
 - npm (Node package manager).
 
-To run the application with automatic reloading, use `nodemon`:
+## Installation
 
-1. Make sure you have `nodemon` installed globally:
+1. **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/username/repository.git
+    ```
+
+2. **Navigate to the project directory:**
+
+    ```bash
+    cd repository
+    ```
+    To run the application with automatic reloading, use `nodemon`:
+
+3. Make sure you have `nodemon` installed globally:
    ```bash
-   npm install -g nodemon
+   npm install 
+   npm start
+   ```
+4. **Access the application:**
 
-   Start the application:
-   npx nodemon app.js
-
+    Open your browser and go to `http://localhost:3000`.
