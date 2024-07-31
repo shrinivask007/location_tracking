@@ -1,24 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real-Time Tracking App</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw=="
-     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    </head>
+    <title>Real-Time Location Sharing App</title>
+    <!-- Include Bootstrap CSS via CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Include Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    
+    <style>
+        /* Custom CSS styles for the "watcher" page (5th style) */
+        body {
+            background-color: #f0f0f0;
+        }
+        title{
+            font-size: small;
+        }
+
+        .map-container {
+            background-color: #ffffff;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .map {
+            min-height: 80vh;
+            height: 100%;
+        }
+
+        .sharing-id {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
 
 <body>
-    <div class="header">StreetMap by Payal Kumari</div>
-    <div id="map"></div>
-    <div class="footer">© 2024 Payal Kumari</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" 
-    integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
-    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO"
-     crossorigin="anonymous"></script>
+    <div class="container">
+
+        <h1 class="text-center my-3">Real-Time Location Sharing App</h1>
+
+        <div class="rounded shadow border border-secondary border-1">
+            <div id="map" class="map rounded"></div>
+        </div>
+        <div id="sharingId" class="py-2">
+            <div>
+                <button id="shareLocation" class="btn btn-primary w-10 ">Share My Location</button>
+                <strong> Link: <a href="http://localhost:3000">http://localhost:3000</a>
+            </div>
+        </div>
+
+    </div>
+    
+
+    <!-- Socket.io script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.min.js"></script>
+    <!-- Leaflet script -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <script src="/js/script.js"></script>
 

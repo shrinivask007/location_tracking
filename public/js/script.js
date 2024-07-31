@@ -23,7 +23,7 @@ const map = L.map("map").setView([0, 0], 16);
 
 // Add a tile layer to the map
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: "StreetMap-byPayalKri"
+    attribution: "Shrinivas"
 }).addTo(map);
 
 // Store markers by user ID
