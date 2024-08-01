@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+    
+    tools{
+        nodejs 'Nodejs'
+    }
+    
+    environment{
+        SCANNER_HOME= tool 'sonar-scanner'
+    }
+
+    stages {
+        stage('Git Checkout') {
+            steps {
+               git branch: 'main', changelog: false, poll: false, url: 'https://github.com/shrinivask007/location_tracking.git'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+               bat 'npm install'
+            }
+        }
+        stage('Sonarqube Analysis') {
+            steps {
+               bat """
+               %SCANNER_HOME%\\bin\\sonar-scanner -Dsonar.host.url=http://localhost:9000 -Dsonar.login=squ_6f3ea8e2e35a6396beab095ba5e0880685ae4cbf -Dsonar.projectName=nodejs -Dsonar.projectKey=nodejs -Dsonar.sources=. -X
+               """
+
+            }
+        }
+        stage("OWASP Dependency Check"){
+            steps{
+                dependencyCheck additionalArguments: '--scan ./ ', odcInstallation: 'DP'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
+        }
+        stage('Image Build & Push DockerHub') {
+            steps {
+               script{
+                   withDockerRegistry(credentialsId: 'f4edf753-96a6-46b7-842c-c0b4f1847bf4') { 
+                       bat "docker build -t demonodejs ."
+                       bat "docker tag demonodejs shrinivassk18/nodejs:latest"
+                       bat "docker push shrinivassk18/nodejs:latest"
+                        
+                   }
+               }
+            }
+        }
+        stage('Docker run') {
+            steps {
+               script{
+                   withDockerRegistry(credentialsId: 'f4edf753-96a6-46b7-842c-c0b4f1847bf4') { 
+                       bat "docker run -d -p 3000:3000 shrinivassk18/nodejs:latest"
+                   }
+               }
+            }
+        }
+    }
+}
+
