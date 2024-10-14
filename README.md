@@ -1,6 +1,6 @@
-# Realtime Device Tracker
+# Real-Time Location Sharing Application - DevOps CI/CD Pipeline
 
-A real-time device tracking application built with Node.js, Express, Socket.IO, and Leaflet. This application allows users to track their devices' locations on a map in real-time using geolocation.
+This project is a **Real-Time Location Sharing Application** developed in **Node.js**. It follows DevSecOps practices, integrating **CI/CD pipelines** with **GitHub**, **Jenkins**, **SonarQube**, **Docker**, and **Aqua Trivy**. The project emphasizes automation, code quality, security scanning, and containerization.
 
 ![Home Page](screenshot/home.png)
 
@@ -53,5 +53,4 @@ vulnerability scanning.
    npm install 
    npm start
    ```
-4. **Access the application:**
-    Open your browser and go to `http://localhost:3000`.
+4. **Access the application:** Open your browser and go to `http://localhost:3000`.
